@@ -6,14 +6,13 @@ before:
 gomod:
   proxy: true
 builds:
-  - env:
+  - id: "lin-win"
+    env:
       - CGO_ENABLED=0
     goos:
       - linux
-      - darwin
       - windows
     goarch:
-      - 386
       - amd64
       - arm
       - arm64
@@ -22,8 +21,30 @@ builds:
       - -trimpath
     ldflags:
       - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{ .CommitDate }} -X main.builtBy=pterm
+  - id: mac-build
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    mod_timestamp: '{{ .CommitTimestamp }}'
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{ .CommitDate }} -X main.builtBy=pterm
+
+universal_binaries:
+  - id: mac-universal
+    ids:
+      - mac-build
+    name_template: "{{ .ProjectName }}-Universal"
+    replace: true
+
 checksum:
-  name_template: '{{ .ProjectName }}_checksums.txt'
+  name_template: '{{ .ProjectName }}.sha256'
+
 changelog:
   sort: asc
   filters:
@@ -36,11 +57,21 @@ changelog:
       - Merge branch
       - go mod tidy
 archives:
-  - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
-    replacements:
-      darwin: Darwin
-      linux: Linux
-      windows: Windows
+  - id: lin-win
+    name_template: '{{ .ProjectName }}_{{- title .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    builds:
+      - lin-win
     format_overrides:
       - goos: windows
         format: zip
+    files:
+      - README.md
+      - LICENSE
+release:
+  ids:
+    - none
+  extra_files:
+    - glob: ./dist/*-Universal*/wiz-go-Universal*
+    - glob: ./dist/*.sha256
+    - glob: ./dist/*.tar.gz
+    - glob: ./dist/*.zip

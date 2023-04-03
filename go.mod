@@ -1,6 +1,6 @@
 module github.com/pterm/cli-template
 
-go 1.18
+go 1.20
 
 require (
 	github.com/pterm/pcli v0.4.6
