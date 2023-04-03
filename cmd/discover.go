@@ -4,7 +4,7 @@ import (
 	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
 
-	"github.com/pterm/cli-template/net"
+	"github.com/x0f5c3/wiz-go/net"
 )
 
 // discoverCmd represents the discover command
