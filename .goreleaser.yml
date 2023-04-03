@@ -71,7 +71,7 @@ release:
   ids:
     - none
   extra_files:
-    - glob: ./dist/*-Universal*/wiz-go-Universal*
+    - glob: ./dist/mac-universal_darwin_all/wiz-go-Universal*
     - glob: ./dist/*.sha256
     - glob: ./dist/*.tar.gz
     - glob: ./dist/*.zip

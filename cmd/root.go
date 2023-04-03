@@ -11,7 +11,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:     "wiz-go",
-	Version: "v0.0.4", // <---VERSION---> Updating this version, will also create a new GitHub release.
+	Version: "v0.0.5", // <---VERSION---> Updating this version, will also create a new GitHub release.
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
