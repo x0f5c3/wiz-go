@@ -37,12 +37,12 @@ func CreateUDP() (*net.UDPConn, error) {
 		return nil, err
 	}
 	err = sysSock.Control(func(fd uintptr) {
-		err := syscall.SetsockoptInt(int(fd), syscall.SOL_SOCKET, syscall.SO_REUSEADDR, 1)
+		err := setSockOpt(fd, syscall.SOL_SOCKET, syscall.SO_REUSEADDR, 1)
 		if err != nil {
 			fmt.Println("Failed to setsockopt due to " + err.Error())
 			return
 		}
-		err = syscall.SetsockoptInt(int(fd), syscall.SOL_SOCKET, syscall.SO_BROADCAST, 1)
+		err = setSockOpt(fd, syscall.SOL_SOCKET, syscall.SO_BROADCAST, 1)
 		if err != nil {
 			fmt.Println("Failed to setsockopt due to " + err.Error())
 			return
