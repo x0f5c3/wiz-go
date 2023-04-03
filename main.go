@@ -1,6 +1,6 @@
 package main
 
-import "github.com/pterm/cli-template/cmd"
+import "github.com/x0f5c3/wiz-go/cmd"
 
 func main() {
 	cmd.Execute()

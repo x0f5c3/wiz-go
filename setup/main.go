@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"io/fs"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -88,13 +87,13 @@ func detectOriginURL() (url string) {
 }
 
 func replaceAllInFile(filepath, search, replace string) {
-	fileBytes, err := ioutil.ReadFile(filepath)
+	fileBytes, err := os.ReadFile(filepath)
 	pterm.Warning.PrintOnError(err)
 	content := string(fileBytes)
 
 	content = strings.ReplaceAll(content, search, replace)
 
-	pterm.Warning.PrintOnError(ioutil.WriteFile(filepath, []byte(content), 0600))
+	pterm.Warning.PrintOnError(os.WriteFile(filepath, []byte(content), 0600))
 }
 
 func getPathTo(file string) string {

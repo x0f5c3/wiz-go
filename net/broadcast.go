@@ -6,7 +6,7 @@ import (
 	"net/netip"
 	"time"
 
-	"github.com/pterm/cli-template/models"
+	"github.com/x0f5c3/wiz-go/models"
 )
 
 const DEFAULTWAITTIME = 5.0

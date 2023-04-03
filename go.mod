@@ -1,4 +1,4 @@
-module github.com/pterm/cli-template
+module github.com/x0f5c3/wiz-go
 
 go 1.20
 
