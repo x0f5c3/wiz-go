@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/pterm/pcli v0.4.6
 	github.com/pterm/pterm v0.12.57
-	github.com/spf13/cobra v1.6.1
+	github.com/spf13/cobra v1.7.0
 	golang.org/x/exp v0.0.0-20220909182711-5c715a9e8561
 )
 
